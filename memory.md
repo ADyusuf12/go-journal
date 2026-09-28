@@ -55,6 +55,42 @@ Backend Engineer
 - Inventory systems
 - Invoicing systems
 
+## Teaching Style & Pedagogy
+
+- **Iterative & Hands-On**: Teach concepts incrementally while writing code in small, testable chunks. Avoid long upfront theoretical lectures.
+- **Immediate Feedback Loop**: Run code and verify terminal output after every structural change to build mechanical intuition.
+- **Senior-to-Senior Peer Tone**: Relate Go concepts directly to production Ruby/Rails architectures, runtime mechanics, and memory behavior.
+- **Embedded Check-Ins**: Use code execution and targeted runtime questions to verify understanding inside the coding process.
+
+---
+
+# Mentor Assessment
+
+**Current Go Level:** Solid Intermediate Core Knowledge
+
+### Strengths
+
+- Backend engineering background
+- Architecture experience
+- PostgreSQL knowledge
+- Business domain modelling
+- Static typing familiarity
+- Rapid mechanical grasp of Go concurrency primitives and channels
+
+### Likely Challenges
+
+- Thinking in Go instead of Rails
+- Context cancellation propagation across microservices
+- Distributed systems
+- Cloud-native patterns
+
+### Not Likely to Struggle With
+
+- Variables & Functions
+- Structs & Interfaces
+- Basic & Advanced Concurrency (Goroutines, Channels, Select)
+- APIs & Domain Architecture
+
 ---
 
 # Master Roadmap
@@ -64,6 +100,7 @@ Backend Engineer
 **Status:** Completed
 
 Completed:
+
 - Go installed
 - VS Code Go extension installed
 - WSL2 verified
@@ -79,6 +116,7 @@ Completed:
 ### Week 1
 
 Topics:
+
 - Go organization
 - Packages
 - Modules
@@ -94,6 +132,7 @@ Topics:
 ## Day 1
 
 **Topics Covered:**
+
 - package main
 - func main()
 - imports
@@ -115,6 +154,7 @@ Go cares heavily about packages and modules. Filenames are relatively unimportan
 ## Day 2
 
 **Topics Covered:**
+
 - functions
 - parameters
 - return values
@@ -124,6 +164,7 @@ Go cares heavily about packages and modules. Filenames are relatively unimportan
 - Go-style error handling
 
 **Example Pattern:**
+
 ```go
 result, err := someFunction()
 
@@ -143,6 +184,7 @@ Marketplace commission calculator with validation.
 ## Day 3
 
 **Topics Covered:**
+
 - Struct definition & initialization
 - Value receivers vs. Pointer receivers
 - Automatic pointer dereferencing & address-taking syntactic sugar
@@ -159,9 +201,10 @@ Go enforces pass-by-value strictly. Pointer receivers operate on caller memory a
 ## Day 4
 
 **Topics Covered:**
+
 - Interface declaration & implicit satisfaction
 - Dependency Injection pattern (CheckoutService accepting PaymentProcessor)
-- Method Set rules (Pointer receivers *T vs Value types T for interfaces)
+- Method Set rules (Pointer receivers \*T vs Value types T for interfaces)
 - Type assertions (val, ok := interface.(ConcreteType))
 - Type switches (switch v := interface.(type))
 - The empty interface (any / interface{})
@@ -171,51 +214,38 @@ Interfaces give Go duck typing at compile-time. Values inside interfaces are two
 
 ---
 
-# Current Position
+## Day 5
 
-**Current Phase:** Phase 1
-**Current Week:** Week 1
-**Current Day:** Day 5
+**Topics Covered:**
+- Goroutines lightweight thread scheduling (`go func()`)
+- Synchronization with `sync.WaitGroup` (Add, Done, Wait)
+- Pointer receiver mechanics for WaitGroups (`*sync.WaitGroup`)
+- Typed Channels (`make(chan T)`) & Directional Channels (`<-chan T`)
+- Unbuffered vs. Buffered Channels (`make(chan T, cap)`)
+- Channel closing mechanics (`close()`) & `for range` channel iteration
+- Multiplexing with `select` and timeout handling using `time.After()`
+- Concurrent Worker Pool pattern with dynamic load balancing
 
-### Next Topic
-
-Concurrency (Goroutines, Channels, Select, and Synchronization)
-
-### Future Topics
-
-- PostgreSQL
-- APIs
-- Authentication
-- Testing
-- Messaging
-- Kubernetes
+**Key Insight:**
+Channels are thread-safe FIFO queues. "Do not communicate by sharing memory; instead, share memory by communicating." Always manage channel lifecycles from the sender side to avoid panics and goroutine leaks.
 
 ---
 
-# Mentor Assessment
+# Current Position
 
-**Current Go Level:** Advanced Beginner
+**Current Phase:** Phase 1
+**Current Week:** Week 2
+**Current Day:** Day 6
 
-### Strengths
+### Next Topic
 
-- Backend engineering background
-- Architecture experience
-- PostgreSQL knowledge
-- Business domain modelling
-- Static typing familiarity
+Slices, Maps, Context Package, and Advanced Memory Layouts
 
-### Likely Challenges
+### Future Topics
 
-- Thinking in Go instead of Rails
-- Advanced Concurrency / Channels
-- Distributed systems
-- Cloud-native patterns
-
-### Not Likely to Struggle With
-
-- Variables
-- Functions
-- Basic typing
-- Structs & Interfaces
-- APIs
-- Authentication concepts
+- PostgreSQL & database/sql / pgx
+- HTTP APIs & Middleware
+- Authentication & JWTs
+- Unit & Integration Testing
+- Event Messaging
+- Kubernetes & Cloud Deployment
