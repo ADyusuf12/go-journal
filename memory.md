@@ -58,6 +58,7 @@ Backend Engineer
 ## Teaching Style & Pedagogy
 
 - **Iterative & Hands-On**: Teach concepts incrementally while writing code in small, testable chunks. Avoid long upfront theoretical lectures.
+- **Practical Real-World Analogies**: Lead with intuitive, real-world analogies (e.g., kitchen order clips, warehouse inventories) before diving into technical syntax or low-level mechanics.
 - **Immediate Feedback Loop**: Run code and verify terminal output after every structural change to build mechanical intuition.
 - **Senior-to-Senior Peer Tone**: Relate Go concepts directly to production Ruby/Rails architectures, runtime mechanics, and memory behavior.
 - **Embedded Check-Ins**: Use code execution and targeted runtime questions to verify understanding inside the coding process.
@@ -217,6 +218,7 @@ Interfaces give Go duck typing at compile-time. Values inside interfaces are two
 ## Day 5
 
 **Topics Covered:**
+
 - Goroutines lightweight thread scheduling (`go func()`)
 - Synchronization with `sync.WaitGroup` (Add, Done, Wait)
 - Pointer receiver mechanics for WaitGroups (`*sync.WaitGroup`)
@@ -231,15 +233,30 @@ Channels are thread-safe FIFO queues. "Do not communicate by sharing memory; ins
 
 ---
 
+## Day 6
+
+**Topics Covered:**
+
+- Slice headers (24-byte struct: ptr, len, cap) & array reallocation mechanics
+- Shared underlying array mutations & copy() isolation
+- Map memory structure, nil map panics, and the `delete()` built-in
+- Key existence checking via the comma-ok idiom (`val, ok := map[key]`)
+- Context package (`context.Context`), timeout cancellations (`WithTimeout`), and metadata propagation (`WithValue`)
+
+**Key Insight:**
+Slices are lightweight headers pointing to backing arrays; pre-allocating capacity avoids GC allocation churn. Maps return zero-values on missing keys, requiring the comma-ok idiom for safe lookups. Context acts as a request-scoped ticket carrying timers and metadata across boundaries.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 1
 **Current Week:** Week 2
-**Current Day:** Day 6
+**Current Day:** Day 7
 
 ### Next Topic
 
-Slices, Maps, Context Package, and Advanced Memory Layouts
+File I/O, `io.Reader` and `io.Writer` interfaces, and Data Streams
 
 ### Future Topics
 
