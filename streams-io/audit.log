@@ -1,0 +1,3 @@
+echo "2026-10-01 INFO [Auth] User USR-1001 logged in successfully" > sample.log
+echo "2026-10-01 WARN [Inventory] Item ITM-502 stock low" >> sample.log
+echo "2026-10-01 ERROR [Payment] Gateway timeout on TXN-9901" >> sample.log

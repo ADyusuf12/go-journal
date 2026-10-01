@@ -59,7 +59,7 @@ Backend Engineer
 
 - **Iterative & Hands-On**: Teach concepts incrementally while writing code in small, testable chunks. Avoid long upfront theoretical lectures.
 - **Practical Real-World Analogies**: Lead with intuitive, real-world analogies (e.g., kitchen order clips, warehouse inventories) before diving into technical syntax or low-level mechanics.
-- **Immediate Feedback Loop**: Run code and verify terminal output after every structural change to build mechanical intuition.
+- **Immediate Feedback Loop & Output Deconstruction**: Run code after structural changes and dissect terminal output line-by-line, mapping every piece of output directly back to code mechanics.
 - **Senior-to-Senior Peer Tone**: Relate Go concepts directly to production Ruby/Rails architectures, runtime mechanics, and memory behavior.
 - **Embedded Check-Ins**: Use code execution and targeted runtime questions to verify understanding inside the coding process.
 
@@ -248,15 +248,30 @@ Slices are lightweight headers pointing to backing arrays; pre-allocating capaci
 
 ---
 
+## Day 7
+
+**Topics Covered:**
+
+- `io.Reader` bucket mechanics & manual buffer allocation (`make([]byte, N)`)
+- `io.EOF` stream termination checking & slice re-slicing (`buffer[:n]`)
+- Line-by-line text parsing via `bufio.Scanner`
+- `io.Writer` interface, stream piping via `io.Copy`, and multiplexing via `io.MultiWriter`
+- Custom `io.Writer` implementation (`RedactingWriter`) for stream data sanitization
+
+**Key Insight:**
+Files, network sockets, and HTTP request bodies all satisfy `io.Reader` and `io.Writer`. Piping streams with fixed memory buffers allows Go services to process gigabytes of data on a flat RAM footprint.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 1
 **Current Week:** Week 2
-**Current Day:** Day 7
+**Current Day:** Day 8
 
 ### Next Topic
 
-File I/O, `io.Reader` and `io.Writer` interfaces, and Data Streams
+Database connectivity with PostgreSQL using `database/sql` & `pgx` driver.
 
 ### Future Topics
 
