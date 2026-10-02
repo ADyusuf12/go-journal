@@ -263,19 +263,34 @@ Files, network sockets, and HTTP request bodies all satisfy `io.Reader` and `io.
 
 ---
 
+## Day 8
+
+**Topics Covered:**
+
+- `database/sql` connection pooling & `pgx/v5` driver registration
+- Connection pool tuning (`SetMaxOpenConns`, `SetMaxIdleConns`, `SetConnMaxLifetime`)
+- Network health verification via `db.PingContext(ctx)`
+- Parameterized SQL execution (`ExecContext`, `QueryRowContext`, `QueryContext`)
+- Safe pointer-based scanning with `rows.Scan()` & `defer rows.Close()` resource management
+- ACID transaction workflows with `db.BeginTx`, `defer tx.Rollback()`, and `FOR UPDATE` row locking
+
+**Key Insight:**
+`sql.DB` is a concurrency-safe connection pool, not a single connection. Executing queries with `*Context` variants guarantees that database operations respect timeout deadlines, while `rows.Scan()` parses binary row streams straight into Go memory pointers.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 1
 **Current Week:** Week 2
-**Current Day:** Day 8
+**Current Day:** Day 9
 
 ### Next Topic
 
-Database connectivity with PostgreSQL using `database/sql` & `pgx` driver.
+HTTP Standard Library (`net/http`), Handlers, ServeMux, and RESTful Routing Mechanics
 
 ### Future Topics
 
-- PostgreSQL & database/sql / pgx
 - HTTP APIs & Middleware
 - Authentication & JWTs
 - Unit & Integration Testing
