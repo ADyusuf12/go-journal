@@ -54,3 +54,18 @@
 | **`http.ServeMux`** | **The Information Desk**: An officer pointing incoming customers to the right service desk based on their request path. | Standard library pattern-matching request router. |
 | **Middleware Wrapper** | **The Security Checkpoint Archway**: Metal detectors every diner must walk through before reaching their table, and walk back through on their way out. | Higher-order function wrapping `http.Handler` to execute pre-processing (auth, timing) and post-processing (logging). |
 | **`server.Shutdown(ctx)`** | **The Closing Bell**: Locking the front doors to new diners, allowing seated diners to finish eating, and turning off lights cleanly. | Stops accepting new TCP connections, waits for active handler goroutines to finish within a deadline, and closes sockets safely. |
+
+---
+
+## 5. Concurrency Scheduler & Memory Management
+
+| Go Mechanic / Interface | Physical Mental Model | Core Mechanical Reality |
+| --- | --- | --- |
+| **Goroutine (`G`)** | **The Order Ticket**: A tiny slip of paper detailing task instructions (~2KB stack) without needing a full human worker attached to it. | User-space lightweight thread struct (`runtime.g`) managing stack pointers and execution status. |
+| **OS Thread (`M`)** | **The Line Cook**: An actual human worker in the kitchen who performs the physical work. | Operating system kernel thread managed by the OS scheduler (~1MB-2MB memory). |
+| **Logical Processor (`P`)** | **The Cooking Station / Prep Counter**: A physical workspace with tools needed by a line cook to prepare food. | Go runtime scheduler context (`GOMAXPROCS`) managing local run queues. An $M$ must acquire a $P$ to execute $G$. |
+| **Work Stealing** | **Borrowing Orders from a Busy Station**: When Cook A finishes their order queue, they look over at Cook B's station and steal half their order slips. | Load-balancing algorithm where idle $P$'s steal half the runnable goroutines from another $P$'s local run queue. |
+| **Netpoller** | **The Order Bell**: Handing ticket fulfillment over to an automated buzzer while the cook prepares other orders until the buzzer rings. | Asynchronous network I/O multiplexer (`epoll`/`kqueue`) that parks goroutines waiting on socket reads without blocking OS threads ($M$). |
+| **Stack Allocation** | **The Scratchpad**: Quick calculations written on a desk memo pad that you tear off and throw away the second you stand up. | Fast, contiguous stack frame memory (~2KB starting) managed by bumping stack pointers. No GC cost. |
+| **Heap Allocation** | **The Central Filing Cabinet**: Storing a document in the main company archive room so anyone in the office can access it later. | Long-lived dynamic memory managed by the Garbage Collector. Requires pointer tracking and GC sweep cycles. |
+| **Escape Analysis** | **The Building Inspector**: An auditor checking whether a document leaves a desk before deciding if it must go into the filing cabinet. | Compile-time optimization pass (`go build -gcflags="-m"`) deciding whether variables live on function stacks or escape to heap. |

@@ -311,19 +311,34 @@ A production Go backend service is composed of modular standard library building
 
 ---
 
+## Day 11
+
+**Topics Covered:**
+
+- The Go M:N user-space runtime scheduler architecture ($G$, $M$, $P$)
+- `GOMAXPROCS` benchmarking and multi-core CPU parallel execution vs single-threaded time-slicing
+- Work-stealing scheduling algorithms and Netpoller async I/O detachment
+- Stack (~2KB dynamic) vs Heap memory allocation mechanics
+- Compiler escape analysis optimization pass (`go build -gcflags="-m"`)
+- Memory escaping rules: value copies vs returned memory addresses (`*T`) and interface boxing (`any`)
+
+**Key Insight:**
+Goroutines ($G$) are lightweight runtime structs, not OS threads. The GMP scheduler maps them onto OS threads ($M$) via logical processors ($P$). Returning values keeps memory on cheap stack frames, whereas returning pointers forces compiler heap escapes that trigger Garbage Collector tracking.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 2 (Concurrency & Production Systems)
 **Current Week:** Week 3
-**Current Day:** Day 11
+**Current Day:** Day 12
 
 ### Next Topic
 
-Goroutines & Channels Deep Dive: Go Scheduler Mechanics (GMP), Memory Stack vs Heap, and CSP Concurrency Patterns
+Advanced Channels, Memory Barriers, Mutexes, and the Go Race Detector (`go run -race`)
 
 ### Future Topics
 
-- HTTP APIs & Middleware
 - Authentication & JWTs
 - Unit & Integration Testing
 - Event Messaging
