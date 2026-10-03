@@ -295,15 +295,31 @@ A Go web server is a high-concurrency TCP listener where `r.Body` and `ResponseW
 
 ---
 
+## Day 10 (Phase 1 Capstone)
+
+**Topics Covered:**
+
+- End-to-end service integration (`net/http` + `pgx` + `database/sql`)
+- Application dependency injection patterns via struct receivers (`*Application`)
+- Context propagation from HTTP request stream (`r.Context()`) down to database socket layers
+- Concurrent transactional race-condition mitigation using `FOR UPDATE` row locks
+- OS signal trapping (`SIGINT`/`SIGTERM`) with buffered signal channels
+- Non-disruptive server lifecycle termination using `server.Shutdown(ctx)`
+
+**Key Insight:**
+A production Go backend service is composed of modular standard library building blocks. Running the HTTP listener in a separate goroutine while monitoring OS signals on the main thread guarantees zero dropped requests or dangling database locks during deployments.
+
+---
+
 # Current Position
 
-**Current Phase:** Phase 1
-**Current Week:** Week 2
-**Current Day:** Day 10
+**Current Phase:** Phase 2 (Concurrency & Production Systems)
+**Current Week:** Week 3
+**Current Day:** Day 11
 
 ### Next Topic
 
-Phase 1 Capstone Integration: Combining `net/http`, PostgreSQL (`pgx`), Middleware, and Graceful Shutdown into a complete HTTP Microservice!
+Goroutines & Channels Deep Dive: Go Scheduler Mechanics (GMP), Memory Stack vs Heap, and CSP Concurrency Patterns
 
 ### Future Topics
 
