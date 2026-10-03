@@ -5,8 +5,8 @@
 [✓] First struct
 [✓] First method
 [✓] First interface
-[ ] First PostgreSQL connection
-[ ] First REST API
+[✓] First PostgreSQL connection
+[✓] First REST API
 [ ] First Docker container
 [ ] First AWS deployment
 [ ] First Kubernetes deployment
