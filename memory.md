@@ -279,15 +279,31 @@ Files, network sockets, and HTTP request bodies all satisfy `io.Reader` and `io.
 
 ---
 
+## Day 9
+
+**Topics Covered:**
+
+- `net/http` server mechanics, `http.Server` timeouts, and goroutine-per-request scheduling
+- `http.NewServeMux` HTTP method routing (`GET`, `POST`)
+- `http.ResponseWriter` (`io.Writer`) and `r.Body` (`io.Reader`) stream processing
+- Zero-intermediate JSON streaming using `json.NewEncoder` and `json.NewDecoder`
+- Defensive payload bounds via `http.MaxBytesReader` and strict schema enforcement with `DisallowUnknownFields`
+- Higher-order middleware chaining (`http.Handler` wrapper pattern) for execution timing and request logging
+
+**Key Insight:**
+A Go web server is a high-concurrency TCP listener where `r.Body` and `ResponseWriter` are streaming I/O interfaces. Wrapping `ServeMux` with middleware functions creates modular execution pipelines without reflection magic or heavy framework abstractions.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 1
 **Current Week:** Week 2
-**Current Day:** Day 9
+**Current Day:** Day 10
 
 ### Next Topic
 
-HTTP Standard Library (`net/http`), Handlers, ServeMux, and RESTful Routing Mechanics
+Phase 1 Capstone Integration: Combining `net/http`, PostgreSQL (`pgx`), Middleware, and Graceful Shutdown into a complete HTTP Microservice!
 
 ### Future Topics
 
