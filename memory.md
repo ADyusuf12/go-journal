@@ -327,15 +327,30 @@ Goroutines ($G$) are lightweight runtime structs, not OS threads. The GMP schedu
 
 ---
 
+## Day 12
+
+**Topics Covered:**
+
+- Data races and non-atomic CPU register operations (`read-modify-write`)
+- Shared memory synchronization using `sync.Mutex` (`mu.Lock()` and `defer mu.Unlock()`)
+- Catching memory corruption using the Go Race Detector (`go run -race .`) and `exit status 66`
+- Communicating Sequential Processes (CSP) vs. Shared Memory
+- Channel runtime internals (`hchan` struct, circular buffers, `sendq`/`recvq`, and `gopark` thread parking)
+
+**Key Insight:**
+Data races cause silent CPU cache corruption because compound operations (`balance += 10`) are not atomic. `sync.Mutex` acts as a memory barrier enforcing turn-taking for low-level state, while channels pass ownership of data entirely over thread-safe circular buffers.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 2 (Concurrency & Production Systems)
 **Current Week:** Week 3
-**Current Day:** Day 12
+**Current Day:** Day 13
 
 ### Next Topic
 
-Advanced Channels, Memory Barriers, Mutexes, and the Go Race Detector (`go run -race`)
+Advanced CSP Patterns: Context Cancellation Chains, Worker Pools, and Pipeline Processing
 
 ### Future Topics
 

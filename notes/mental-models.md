@@ -69,3 +69,15 @@
 | **Stack Allocation** | **The Scratchpad**: Quick calculations written on a desk memo pad that you tear off and throw away the second you stand up. | Fast, contiguous stack frame memory (~2KB starting) managed by bumping stack pointers. No GC cost. |
 | **Heap Allocation** | **The Central Filing Cabinet**: Storing a document in the main company archive room so anyone in the office can access it later. | Long-lived dynamic memory managed by the Garbage Collector. Requires pointer tracking and GC sweep cycles. |
 | **Escape Analysis** | **The Building Inspector**: An auditor checking whether a document leaves a desk before deciding if it must go into the filing cabinet. | Compile-time optimization pass (`go build -gcflags="-m"`) deciding whether variables live on function stacks or escape to heap. |
+
+---
+
+## 6. Concurrency Protection & Channel Mechanics
+
+| Go Mechanic / Interface | Physical Mental Model | Core Mechanical Reality |
+| --- | --- | --- |
+| **Data Race** | **Writing on the Same Whiteboard**: Two workers grabbing the same dry-erase marker at the exact same second and scribbling over each other's numbers. | Two goroutines reading and writing to the same memory address concurrently without memory barriers, causing L1/L2 CPU cache corruption. |
+| **`sync.Mutex`** | **The Marker Box Padlock**: A physical padlock key attached to the whiteboard marker. You grab the key (`mu.Lock()`), write your update, and hang the key back (`defer mu.Unlock()`). | Hardware memory barrier that enforces exclusive single-threaded execution over a critical section of memory. |
+| **Race Detector (`-race`)** | **The Security Guard**: An auditor standing over the whiteboard who blows a loud whistle (`exit code 66`) the second two workers touch the marker without holding the key. | Compile-time code instrumentation (ThreadSanitizer) tracking concurrent read/write instructions to memory addresses. |
+| **Channel Struct (`hchan`)** | **The Conveyor Belt**: A motorized belt carrying packages between workers. Sender puts a box on the belt, receiver picks it up at the end. | A heap-allocated struct holding a circular ring buffer (`buf`) and protected by an internal spinlock. |
+| **Channel Waiting Queues (`recvq`/`sendq`)** | **The Sleeping Bench**: A bench next to an empty conveyor belt where a worker takes a nap (`gopark`) until a package arrives and gently taps them awake. | Linked lists of parked goroutines attached to `hchan` waiting for send or receive readiness without CPU spinning. |
