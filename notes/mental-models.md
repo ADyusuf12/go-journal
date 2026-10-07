@@ -81,3 +81,14 @@
 | **Race Detector (`-race`)** | **The Security Guard**: An auditor standing over the whiteboard who blows a loud whistle (`exit code 66`) the second two workers touch the marker without holding the key. | Compile-time code instrumentation (ThreadSanitizer) tracking concurrent read/write instructions to memory addresses. |
 | **Channel Struct (`hchan`)** | **The Conveyor Belt**: A motorized belt carrying packages between workers. Sender puts a box on the belt, receiver picks it up at the end. | A heap-allocated struct holding a circular ring buffer (`buf`) and protected by an internal spinlock. |
 | **Channel Waiting Queues (`recvq`/`sendq`)** | **The Sleeping Bench**: A bench next to an empty conveyor belt where a worker takes a nap (`gopark`) until a package arrives and gently taps them awake. | Linked lists of parked goroutines attached to `hchan` waiting for send or receive readiness without CPU spinning. |
+
+---
+
+## 7. CSP Concurrency Pipelines
+
+| Go Mechanic / Interface | Physical Mental Model | Core Mechanical Reality |
+| --- | --- | --- |
+| **Generator Pattern** | **The Main Supply Unloader**: A worker continuously unpacking cargo boxes from a truck and sending them down the main warehouse conveyor belt. | A goroutine generating values onto an outbound channel (`<-chan T`) and closing it when complete. |
+| **Fan-Out (Worker Pool)** | **Parallel Packaging Stations**: Splitting one main conveyor belt into 3 parallel sub-belts so 3 workers can pack boxes side-by-side. | Distributing workload from a single input channel across $N$ worker goroutines to scale throughput. |
+| **Fan-In (Multiplexer)** | **The Delivery Truck Funnel**: Merging 3 sub-belts back onto one single ramp leading straight into the delivery truck. | Multiplexing $N$ input channels onto a single output channel using `sync.WaitGroup`. |
+| **Cancellation Chain (`ctx.Done()`)** | **The Fire Alarm**: Pulling the warehouse emergency alarm so every worker on every belt instantly stops what they are doing and exits cleanly. | Closing a context done channel to signal instant termination across all listening goroutines in a pipeline. |

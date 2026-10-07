@@ -342,15 +342,29 @@ Data races cause silent CPU cache corruption because compound operations (`balan
 
 ---
 
+## Day 13
+
+**Topics Covered:**
+
+- The Generator Pattern (channel-producing goroutines)
+- Fan-Out concurrency pattern (Worker Pools distributing work from shared input channels)
+- Fan-In aggregation pattern (multiplexing multiple worker channels into a single output stream via `sync.WaitGroup`)
+- Cascading context cancellation chains (`<-ctx.Done()`) across multi-stage pipelines to prevent goroutine leaks
+
+**Key Insight:**
+Pipelines allow streaming large data sets with constant memory footprints. Combining Fan-Out/Fan-In with `context.Context` guarantees high-throughput parallel execution while maintaining instant, non-leaking cancellation control across every stage.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 2 (Concurrency & Production Systems)
 **Current Week:** Week 3
-**Current Day:** Day 13
+**Current Day:** Day 14
 
 ### Next Topic
 
-Advanced CSP Patterns: Context Cancellation Chains, Worker Pools, and Pipeline Processing
+Phase 2 Review & Capstone: Building a High-Throughput Concurrent Data Ingestion Pipeline
 
 ### Future Topics
 
