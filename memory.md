@@ -59,6 +59,7 @@ Backend Engineer
 
 - **Iterative & Hands-On**: Teach concepts incrementally while writing code in small, testable chunks. Avoid long upfront theoretical lectures.
 - **Practical Real-World Analogies**: Lead with intuitive, real-world analogies (e.g., kitchen order clips, warehouse inventories) before diving into technical syntax or low-level mechanics.
+- **Pre- and Post-Execution Line-by-Line Analogies**: For all primary implementation files (`main.go`), break down code mechanics using real-world analogies both before running the code and immediately after deconstructing the terminal output.
 - **Immediate Feedback Loop & Output Deconstruction**: Run code after structural changes and dissect terminal output line-by-line, mapping every piece of output directly back to code mechanics.
 - **Senior-to-Senior Peer Tone**: Relate Go concepts directly to production Ruby/Rails architectures, runtime mechanics, and memory behavior.
 - **Embedded Check-Ins**: Use code execution and targeted runtime questions to verify understanding inside the coding process.
@@ -356,15 +357,29 @@ Pipelines allow streaming large data sets with constant memory footprints. Combi
 
 ---
 
+## Day 14
+
+**Topics Covered:**
+
+- End-to-end integration of Phase 2 concurrency primitives in a high-throughput capstone engine
+- Combining Generator, Fan-Out Worker Pool, and Fan-In Multiplexer patterns
+- Thread-safe state tracking using a hybrid approach of `sync/atomic` counters and `sync.Mutex` critical sections
+- Validating absolute memory safety under concurrent load using the Go Race Detector (`go run -race`)
+
+**Key Insight:**
+Production Go systems rely on clean pipeline boundaries where channels pass data ownership and mutexes/atomics protect shared state. Designing concurrent pipelines with context cancellation ensures robust, leak-free server behavior under load.
+
+---
+
 # Current Position
 
-**Current Phase:** Phase 2 (Concurrency & Production Systems)
-**Current Week:** Week 3
-**Current Day:** Day 14
+**Current Phase:** Phase 3 (Distributed Systems, Advanced HTTP & Production Architecture)
+**Current Week:** Week 4
+**Current Day:** Day 15
 
 ### Next Topic
 
-Phase 2 Review & Capstone: Building a High-Throughput Concurrent Data Ingestion Pipeline
+Advanced Web Architecture: Custom Middleware Chains, Structured Logging (`slog`), and Distributed Tracing
 
 ### Future Topics
 

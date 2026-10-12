@@ -92,3 +92,12 @@
 | **Fan-Out (Worker Pool)** | **Parallel Packaging Stations**: Splitting one main conveyor belt into 3 parallel sub-belts so 3 workers can pack boxes side-by-side. | Distributing workload from a single input channel across $N$ worker goroutines to scale throughput. |
 | **Fan-In (Multiplexer)** | **The Delivery Truck Funnel**: Merging 3 sub-belts back onto one single ramp leading straight into the delivery truck. | Multiplexing $N$ input channels onto a single output channel using `sync.WaitGroup`. |
 | **Cancellation Chain (`ctx.Done()`)** | **The Fire Alarm**: Pulling the warehouse emergency alarm so every worker on every belt instantly stops what they are doing and exits cleanly. | Closing a context done channel to signal instant termination across all listening goroutines in a pipeline. |
+
+---
+
+## 8. Synchronization & Context Propagation
+
+| Go Mechanic / Interface | Physical Mental Model | Core Mechanical Reality |
+| --- | --- | --- |
+| **Atomic Operations (`sync/atomic`)** | **The Digital Tally Counter**: A handheld clicker button at a club entrance. You press it instantly to bump the count without needing to open up a ledger book. | Lock-free CPU instructions (`LOCK XADD` on x86) that modify memory values directly at the hardware bus level in a single uninterrupted cycle. |
+| **Context Propagation (`context.Context`)** | **The Relay Baton**: A baton passed from runner to runner in a race, carrying expiration countdowns and metadata down the line. | An immutable, request-scoped tree value structure passing deadlines, cancellation signals, and request values down through function call stacks. |
