@@ -388,6 +388,7 @@ Unlike Rails' object-oriented Rack middleware stack, Go uses lightweight functio
 ## Day 16
 
 **Topics Covered:**
+
 - Go 1.22+ standard library method-based routing (`METHOD /path` inside `ServeMux`)
 - Guarding server memory using `http.MaxBytesReader` against payload size attacks
 - Strict schema validation using `json.Decoder.DisallowUnknownFields()`
@@ -398,14 +399,29 @@ Go's standard library provides enterprise-grade safety tools out of the box. Enf
 
 ---
 
+## Day 17
+
+**Topics Covered:**
+
+- Clean dependency injection using custom `AppContext` structs for handlers and dependencies
+- Integrating `pgx/v5` connection pools (`pgxpool.Pool`) into HTTP web applications
+- Enforcing request-scoped deadlines and timeouts with `context.WithTimeout`
+- Executing safe parameterized SQL inserts and scanning primary keys back into Go structs
+
+**Key Insight:**
+Combining Go's standard library HTTP routing/validation with `pgx/v5` gives you an enterprise-grade backend architecture that rivals heavy frameworks while maintaining absolute visibility and control over every socket, timeout, and database transaction.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 3 (Distributed Systems, Advanced HTTP & Production Architecture)
 **Current Week:** Week 4
-**Current Day:** Day 17
+**Current Day:** Day 18
 
 ### Next Topic
-Connecting Advanced Web Handlers to PostgreSQL with `pgx/v5` and Context Transactions
+
+Database Transactions, Rollbacks, and Row-Level Locking (`SELECT ... FOR UPDATE`)
 
 ### Future Topics
 
