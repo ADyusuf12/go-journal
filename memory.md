@@ -385,15 +385,27 @@ Unlike Rails' object-oriented Rack middleware stack, Go uses lightweight functio
 
 ---
 
+## Day 16
+
+**Topics Covered:**
+- Go 1.22+ standard library method-based routing (`METHOD /path` inside `ServeMux`)
+- Guarding server memory using `http.MaxBytesReader` against payload size attacks
+- Strict schema validation using `json.Decoder.DisallowUnknownFields()`
+- Implementing custom struct validation methods and returning precise HTTP status codes (`201`, `400`, `422`)
+
+**Key Insight:**
+Go's standard library provides enterprise-grade safety tools out of the box. Enforcing strict schema contracts with `DisallowUnknownFields()` ensures that malformed or malicious payloads are rejected at the edge before ever touching business logic or database layers.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 3 (Distributed Systems, Advanced HTTP & Production Architecture)
 **Current Week:** Week 4
-**Current Day:** Day 16
+**Current Day:** Day 17
 
 ### Next Topic
-
-Advanced HTTP Routing, Path Parameters, and JSON Payload Validation
+Connecting Advanced Web Handlers to PostgreSQL with `pgx/v5` and Context Transactions
 
 ### Future Topics
 
