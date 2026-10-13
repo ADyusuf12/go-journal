@@ -28,3 +28,11 @@ Instead of an ORM instantiating heavy Ruby objects with internal state tracking,
 In Rails, an unhandled exception inside a transaction block rolls back automatically via control-flow magic. In Go, `defer tx.Rollback()` makes resource cleanup explicit, deterministic, and visible right at the call site.
 
 You aren't just writing backend applications anymore—you're managing system resources, network streams, and memory layouts. That mechanical clarity makes you a drastically better engineer in any language, including Ruby!
+
+---
+
+## Rails: The Opinionated Mansion vs. Go: Unfiltered Freedom
+
+In Rails, you are working inside a massive, highly opinionated mansion ("Convention over Configuration"). When you want to do things the way Rails intends, it is lightning-fast. But the moment you want to customize the plumbing—like tweaking how middleware passes request context or intercepting status codes—you find yourself fighting heavy abstractions, monkey-patching, or digging through ActionDispatch source code.
+
+In Go, because everything boils down to simple interfaces and functions (`http.Handler`), you own every single wire. You aren't fighting a framework; you're just writing code. You have total architectural freedom to build exactly the pipeline you need with zero hidden magic.

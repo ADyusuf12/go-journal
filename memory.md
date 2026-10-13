@@ -371,15 +371,29 @@ Production Go systems rely on clean pipeline boundaries where channels pass data
 
 ---
 
+## Day 15
+
+**Topics Covered:**
+
+- Pure functional HTTP middleware chains (`http.Handler` wrapper pattern)
+- Wrapping `http.ResponseWriter` to intercept HTTP status codes and response sizes
+- Context value injection (`context.WithValue`) for request-scoped metadata like Request IDs
+- Native structured JSON logging using Go's built-in `log/slog` package
+
+**Key Insight:**
+Unlike Rails' object-oriented Rack middleware stack, Go uses lightweight functional composition. Coupled with `log/slog`, Go provides high-performance observability out of the box without requiring third-party formatting gems.
+
+---
+
 # Current Position
 
 **Current Phase:** Phase 3 (Distributed Systems, Advanced HTTP & Production Architecture)
 **Current Week:** Week 4
-**Current Day:** Day 15
+**Current Day:** Day 16
 
 ### Next Topic
 
-Advanced Web Architecture: Custom Middleware Chains, Structured Logging (`slog`), and Distributed Tracing
+Advanced HTTP Routing, Path Parameters, and JSON Payload Validation
 
 ### Future Topics
 
